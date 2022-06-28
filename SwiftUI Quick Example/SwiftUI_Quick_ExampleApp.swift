@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct SwiftUI_Quick_ExampleApp: App {
+    @StateObject var rtcManager = RTCManager()
+
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(rtcManager)
         }
     }
 }

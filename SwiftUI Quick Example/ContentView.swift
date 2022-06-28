@@ -8,9 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @EnvironmentObject var rtcManager: RTCManager
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        GeometryReader { geo in
+            let smallest = min(geo.size.height, geo.size.width) - 10
+            List(rtcManager.sortedUids, id: \.self) { uid in
+                    RtcView(uid: uid)
+                        .frame(width: smallest, height: smallest, alignment: .center)
+                        .listRowInsets(.init())
+                        .padding(5)
+
+            }
+            .listStyle(PlainListStyle())
+            .listRowSeparator(.hidden)
+        }
     }
 }
 
